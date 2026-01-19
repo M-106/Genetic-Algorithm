@@ -2,18 +2,22 @@
 
 Implementation of Genetic-Algorithm for solution finding (optimization)
 
-
-
 Easy to use GA implementation. With parallel computing and info-prints. Simple and flexible for your optimal solution finding.
+
+[> Documentation <](https://m-106.github.io/Genetic-Algorithm/)
 
 
 <div align="center">
 <img src="./logo.jpeg" width="60%"></img>
 </div>
 
+<br><br>
 
+---
 
 ### Usage
+
+<br>
 
 1. Get the code
 
@@ -85,9 +89,12 @@ Easy to use GA implementation. With parallel computing and info-prints. Simple a
 
 Short explanation:<br>The **kwargs** are the inputs of optimize-method. These are the values which are needed to calculate the fitness. Maybe you can calculate the fitness without them, depending on what you are optimizing.<br>The **list of parameters** are the gene/the solution, so the parameters which are changed and optimized.<br>The **get_random_value** method return a random value for a given parameter, so that the solutions can be initialized and mutated.
 
+<br><br>
 
+---
 
 ### Examples
+
 - <a href="./example.ipynb">Regression with RandomForrestRegressor</a>
 - <a href="./example_2.ipynb">Knapsack problem</a>
 
@@ -103,7 +110,13 @@ Short explanation:<br>The **kwargs** are the inputs of optimize-method. These ar
 </div>
 -->
 
+<br><br>
+
+---
+
 ### License
+
+<br>
 
 Feel free to use it. Of course you don't have to name me in your code :)
 
