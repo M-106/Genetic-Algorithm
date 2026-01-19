@@ -9,16 +9,20 @@ readme = readme.replace('<a href="./example_2.ipynb">', '<a href="https://github
 
 
 setup(
-  name = 'Simple_Genetic_Algorithm',         # How you named your package folder (MyLib)
-  packages = ['Simple_Genetic_Algorithm'],   # Chose the same as "name"
-  version = '0.1.9.6',      # Start with a small number and increase it with every change you make
+  name = 'simple_genetic_algorithm',         # How you named your package folder (MyLib)
+  packages = ['simple_genetic_algorithm'],   # Chose the same as "name"
+  version = '0.3.0.0',      # Start with a small number and increase it with every change you make
   license='MPL-2.0',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Genetic Algorithm Framework',   # Give a short description about your library
   long_description = readme,
   long_description_content_type='text/markdown',
   author = 'Tobia Ippolito',                   # Type in your name
   url = 'https://github.com/M-106/Genetic-Algorithm',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/M-106/Genetic-Algorithm/archive/v_01.tar.gz',    
+  download_url = 'https://github.com/M-106/Genetic-Algorithm/archive/v_02.tar.gz',  
+  project_urls={
+        "Documentation": "https://M-106.github.io/Genetic-Algorithm/",
+        "Source": "https://github.com/M-106/Genetic-Algorithm"
+    },  
   keywords = ['Optimization', 'Genetic-Algorithm', 'Hyperparameter-Tuning'],   # Keywords that define your package best
   install_requires=[            # used libraries
           'joblib'

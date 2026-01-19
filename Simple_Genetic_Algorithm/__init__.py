@@ -1,3 +1,72 @@
-from Simple_Genetic_Algorithm.genetic_algorithm import GA, get_random
+"""
+# Genetic Algorithm Framework
+
+This module provides a framework for solution finding using a Genetic Algorithm (GA).
+Like hyperparameter optimization in ML.
+
+<br><br>
+
+### Usage
+
+1. Get the code
+    - [pip install](https://pypi.org/project/Simple-Genetic-Algorithm/) it
+        ```python
+        pip install simple-genetic-algorithm
+        ```
+
+2. Import the class and helper function
+
+   ```python
+   import simple_genetic_algorithm as sga
+   # sga.GeneticInstance
+   # sga.get_random
+   ```
+
+3. Create 2 functions and parameters
+
+   ```python
+   class Example_GA(sga.GeneticInstance):
+   
+       def calculate_fitness(self, kwargs, params):
+           # return here the fitness (how good the solution is)
+           # as bigger as better!
+           # hint: if you have a loss, you should propably just return -1*loss
+           # example for sklearn model:
+            model = RandomForestRegressor(n_estimators=params["n_estimators"], ...)
+     		 model = model.fit(kwargs["X_train"], kwargs["y_train"])
+           # predict
+           y_pred = model.predict(kwargs["X_test"])
+           # calc mean absolute error loss
+           y_true = np.array(kwargs["y_test"])
+           y_pred = np.array(y_pred)
+           return - np.mean(np.abs(y_true - y_pred))
+   
+       def get_random_value(self, param_key):
+           if param_key == "name_of_parameter_1":
+               return get_random(10, 1000)
+           elif param_key == "name_of_parameter_2":
+               return get_random(["something_1", "something_2", "something_3"])
+           elif param_key == "name_of_parameter_3":
+               return get_random(0.0, 1.0)
+           
+           ...
+   
+   parameters = ["n_estimators", "criterion", "max_depth", "max_features", "bootstrap"]
+   ```
+
+4. Create and run genetic algorithm and pass the input, which will be used in the calculate_fitness function (in kwargs variable)
+
+   ```python
+   optimizer = Example_GA(generations=10, population_size=15, mutation_rate=0.3, list_of_params=parameters)
+   best_params, best_fitness, log_str = optimizer.optimize(X_train=X_train, y_train=y_train, X_test=X_dev, y_test=y_dev)
+   ```
+
+
+
+Short explanation:<br>The **kwargs** are the inputs of optimize-method. These are the values which are needed to calculate the fitness. Maybe you can calculate the fitness without them, depending on what you are optimizing.<br>The **list of parameters** are the gene/the solution, so the parameters which are changed and optimized.<br>The **get_random_value** method return a random value for a given parameter, so that the solutions can be initialized and mutated.
+
+Author: Tobia Ippolito
+"""
+from .simple_genetic_algorithm import GeneticInstance, get_random
 
 

@@ -1,20 +1,30 @@
 """
-Genetic Algorithm Framework
+Contains the implementation of a simple Genetic Algorithm framework for hyperparameter optimization.
 
-This module provides a framework for solution finding using a Genetic Algorithm (GA).
-Like hyperparameter optimization in ML.
+There is the `get_random` helper function to create random parameter values,
+and the abstract base class `GeneticInstance` which needs to be inherited and the abstract methods implemented.
 
 Author: Tobia Ippolito
 """
 
-# imports
+
+
+# ------------------------
+#         Imports
+# ------------------------
 import random
 import copy
 from datetime import datetime as dt
-from joblib import Parallel, delayed
-import enum
 from abc import ABC, abstractmethod
 
+# parallel processing
+from joblib import Parallel, delayed
+
+
+
+# ------------------------
+#     Helper Function
+# ------------------------
 def get_random(*args):
     """
     A helper function to create the get_random_param_value method.
@@ -43,9 +53,15 @@ def get_random(*args):
         else:
             return random.random()
 
-class GA(ABC):
+
+
+# ------------------------
+#    Base Class for GA
+# ------------------------
+class GeneticInstance(ABC):
     """
-    Abstract base class for Genetic Algorithm.
+    Abstract base class for Genetic Algorithm.<br>
+    Contains methods for initializing population, selection, crossover, mutation, and optimization.
 
     Attributes:
     - generations (int): Number of generations.
@@ -188,6 +204,7 @@ class GA(ABC):
         self.custom_params = custom_params
 
 
+
     def add_initial_solution(self, solution:dict):
         """
         Adds an initial solution to the population.
@@ -200,6 +217,8 @@ class GA(ABC):
         - None
         """
         self.initial_solutions += [[solution, float('-inf')]]
+
+
 
     def get_short_duration_representation(self, start, end):
         """
@@ -219,6 +238,8 @@ class GA(ABC):
         res = f"{int(days)}D {int(hours)}H {int(minutes)}M {int(seconds)}S"
         return res
 
+
+
     @abstractmethod
     def calculate_fitness(self, kwargs, params):
         """
@@ -234,6 +255,8 @@ class GA(ABC):
         """
         pass
 
+
+
     @abstractmethod
     def get_random_param_value(self, param_key):
         """
@@ -247,6 +270,8 @@ class GA(ABC):
         - any: Random value for the specified parameter.
         """
         pass
+
+
 
     def init_population(self, population_size, init_method='random', param_ranges=None, mean=0, std_dev=1, custom_params=None):
         """
@@ -308,6 +333,8 @@ class GA(ABC):
         
         return new_population
 
+
+
     def select_individuals(self, population, population_size, method='elitism', k=0.2, tournament_size=3):
         """
         Selects individuals from the population based on the chosen selection method.
@@ -347,6 +374,8 @@ class GA(ABC):
             raise ValueError(f"Unknown selection method: {method}")
 
         return selected_population
+
+
 
     def crossover(self, parents, possibility=0.5, crossover_method='uniform', crossover_points=(0, 1)):
         """
@@ -427,6 +456,8 @@ class GA(ABC):
 
         return offspring_population
 
+
+
     def mutate_population(self, population, mutation_rate, population_size, 
                           mutation_method='random', 
                           gaussian_std_dev=None, 
@@ -485,6 +516,8 @@ class GA(ABC):
 
         return population
 
+
+
     def add_newcomers(self, population, population_size):
         """
         'Fills' the population with new random solutions/individuals so that the population_size stays the same.
@@ -503,6 +536,8 @@ class GA(ABC):
             population += new_individuals
         return population
 
+
+
     def calculate_fitness_wrapper(self, kwargs, cur_individual, idx, len_population):
         """
         Wrapper for parallel fitness calculation.
@@ -518,6 +553,8 @@ class GA(ABC):
         """
         fitness = self.calculate_fitness(kwargs, cur_individual)
         return idx, (cur_individual, fitness)
+
+
 
     def optimize(self, **kwargs):
         """

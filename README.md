@@ -7,8 +7,9 @@ Implementation of Genetic-Algorithm for solution finding (optimization)
 Easy to use GA implementation. With parallel computing and info-prints. Simple and flexible for your optimal solution finding.
 
 
-
-<img src="./logo.jpeg"></img>
+<div align="center">
+<img src="./logo.jpeg" width="60%"></img>
+</div>
 
 
 
@@ -18,29 +19,33 @@ Easy to use GA implementation. With parallel computing and info-prints. Simple a
 
    - Download the project and add to python module search path in your code
    
-       ``````python
+       ```python
        import sys
        sys.path.insert(0, '../path_to_GA_py_dir')
        # ./ => this folder
        # ../ => supfolder
-       ``````
+       ```
 
     - **Or** [pip install](https://pypi.org/project/Simple-Genetic-Algorithm/) it (easier)
 
-        ``````python
-        pip install Simple-Genetic-Algorithm
-        ``````
+        ```python
+        pip install simple-genetic-algorithm
+        ```
 
 2. Import the class and helper function
 
-   ``````python
-   from genetic_algorithm import GA, get_random
-   ``````
+   ```python
+   import simple_genetic_algorithm as sga
+   # sga.GeneticInstance
+   # sga.get_random
+   # or
+   from simple_genetic_algorithm import GeneticInstance, get_random
+   ```
 
 3. Create 2 functions and parameters
 
-   ``````python
-   class Example_GA(GA):
+   ```python
+   class Example_GA(sga.GeneticInstance):
    
        def calculate_fitness(self, kwargs, params):
            # return here the fitness (how good the solution is)
@@ -67,14 +72,14 @@ Easy to use GA implementation. With parallel computing and info-prints. Simple a
            ...
    
    parameters = ["n_estimators", "criterion", "max_depth", "max_features", "bootstrap"]
-   ``````
+   ```
 
 4. Create and run genetic algorithm and pass the input, which will be used in the calculate_fitness function (in kwargs variable)
 
-   ``````python
+   ```python
    optimizer = Example_GA(generations=10, population_size=15, mutation_rate=0.3, list_of_params=parameters)
    best_params, best_fitness, log_str = optimizer.optimize(X_train=X_train, y_train=y_train, X_test=X_dev, y_test=y_dev)
-   ``````
+   ```
 
 
 
@@ -102,9 +107,9 @@ Short explanation:<br>The **kwargs** are the inputs of optimize-method. These ar
 
 Feel free to use it. Of course you don't have to name me in your code :)
 
--> It is a copy-left license
+-> It is a copy-left license => MPL-2.0
 
-For all details see the license file.
+
 
 
 
